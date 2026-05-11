@@ -216,6 +216,7 @@
 
 .guarantee {
   width: fit-content;
+  margin-top: 0.55rem;
   font-size: 13px;
   color: #7a3a20;
   text-decoration: underline;
