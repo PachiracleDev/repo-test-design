@@ -45,31 +45,26 @@ const accentWords = ["Better", "Training", "Treats"];
     </div>
 
     <div class="hero-visual">
-      <img
-        class="hero-product"
-        src={ASSETS.productTrio}
-        alt="Pupford freeze-dried training treats bags in beef, chicken, and salmon flavors"
-        width="2400"
-        height="1800"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-        data-animate="product"
-      />
-
-      <DiscountBadge />
+      <div class="hero-media">
+        <img
+          class="hero-product"
+          src={ASSETS.productTrio}
+          alt="Pupford freeze-dried training treats bags in beef, chicken, and salmon flavors"
+          width="2400"
+          height="1800"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          data-animate="product"
+        />
+        <DiscountBadge />
+      </div>
 
       <div class="hero-callouts">
         <BenefitCallout label="High Value" position="top-left" />
         <BenefitCallout label="Low Calorie" position="middle-right" />
         <BenefitCallout label="Size" position="bottom-left" />
       </div>
-
-      <svg class="connectors" viewBox="0 0 920 700" preserveAspectRatio="none" aria-hidden="true">
-        <path class="connector-path connector-top-left" data-connector d="M170,150 C300,120 360,180 435,250" />
-        <path class="connector-path connector-middle-right" data-connector d="M756,312 C680,290 620,310 546,342" />
-        <path class="connector-path connector-bottom-left" data-connector d="M180,510 C310,518 350,460 423,418" />
-      </svg>
     </div>
   </div>
 </section>

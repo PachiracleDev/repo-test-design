@@ -2,6 +2,8 @@
 import "../styles/header.css";
 
 const marqueeItems = Array.from({ length: 8 }, () => "Free Shipping on Orders over $50");
+
+const LOGO_SRC = "https://pupford.com/cdn/shop/files/pupford-logo.png?v=1726521768&width=150";
 ---
 
 <header class="site-header" data-animate="header">
@@ -20,12 +22,52 @@ const marqueeItems = Array.from({ length: 8 }, () => "Free Shipping on Orders ov
         <a href="#" class="nav-link">Blogs</a>
       </div>
 
-      <a href="#" class="logo" aria-label="Pupford homepage">pupford</a>
+      <a href="#" class="logo" aria-label="Pupford homepage">
+        <img
+          class="logo-img"
+          src={LOGO_SRC}
+          alt="Pupford logo"
+          width="150"
+          height="40"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
 
       <div class="nav-icons" aria-label="User actions">
-        <a href="#" class="icon-link" aria-label="Search">🔍</a>
-        <a href="#" class="icon-link" aria-label="Account">👤</a>
-        <a href="#" class="icon-link" aria-label="Cart">🛍️</a>
+        <a href="#" class="icon-link" aria-label="Search">
+          <svg class="nav-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+            <path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </a>
+        <a href="#" class="icon-link" aria-label="Account">
+          <svg class="nav-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2" />
+            <path
+              d="M6 19v-1a4 4 0 014-4h4a4 4 0 014 4v1"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+        <a href="#" class="icon-link" aria-label="Cart">
+          <svg class="nav-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M9 8V6a3 3 0 016 0v2"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M5 9h14l-1.2 10.1a2 2 0 01-2 1.9H8.2a2 2 0 01-2-1.9L5 9z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
       </div>
     </div>
   </nav>

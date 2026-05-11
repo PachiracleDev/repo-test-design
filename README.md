@@ -1,6 +1,6 @@
 # Pupford Hero Redesign (Astro)
 
-Rediseño técnico de la sección hero de Pupford, construido con Astro + CSS puro + GSAP (ScrollTrigger).
+Rediseño técnico de la sección hero de Pupford, construido con Astro + CSS puro + GSAP (entrada y microinteracciones).
 
 ## Stack
 

@@ -1,0 +1,64 @@
+---
+import "../styles/feature-section.css";
+
+const ASSETS = {
+  lifestyleTreats:
+    "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/training+treats+lifestyle.jpeg",
+  bagWithSize:
+    "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/pupford_product_imagestack_training_cheddarc_size.jpg"
+};
+---
+
+<section class="feature-section" aria-labelledby="feature-title">
+  <div class="feature-inner">
+    <div class="feature-media">
+      <img
+        class="feature-lifestyle"
+        src={ASSETS.lifestyleTreats}
+        alt="Dog enjoying Pupford training treats"
+        width="2500"
+        height="1667"
+        loading="lazy"
+        decoding="async"
+      />
+      <article class="feature-card">
+        <img
+          src={ASSETS.bagWithSize}
+          alt="Pupford training treats product bag"
+          width="880"
+          height="880"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <p class="feature-card-label">Best Seller</p>
+          <h3>Freeze Dried Training Treats</h3>
+          <p>From $15.99</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="feature-copy">
+      <p class="feature-kicker">Why Pupford Works</p>
+      <h2 id="feature-title">Built for frequent rewards without overfeeding your dog</h2>
+      <p>
+        Ultra-light, protein-first treats designed for high repetition during obedience training. Same motivation,
+        cleaner sessions, and more precise behavior shaping.
+      </p>
+      <div class="feature-metrics">
+        <article>
+          <strong>Low Calorie</strong>
+          <span>Reward more often with confidence.</span>
+        </article>
+        <article>
+          <strong>High Value</strong>
+          <span>Strong motivation for focused sessions.</span>
+        </article>
+        <article>
+          <strong>Bite Sized</strong>
+          <span>No crumbling, fast repetition in training.</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
