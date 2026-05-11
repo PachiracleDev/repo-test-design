@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: "High Value" | "Low Calorie" | "Size";
+  position: "top-left" | "middle-right" | "bottom-left";
+}
+
+const { label, position } = Astro.props;
+
+const iconByLabel = {
+  "High Value": "💎",
+  "Low Calorie": "🍃",
+  Size: "📏"
+};
+---
+
+<div class={`benefit-callout benefit-${position}`} data-callout>
+  <span class="benefit-icon" aria-hidden="true">{iconByLabel[label]}</span>
+  <span class="benefit-label">{label}</span>
+</div>

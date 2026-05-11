@@ -1,0 +1,32 @@
+---
+import "../styles/header.css";
+
+const marqueeItems = Array.from({ length: 8 }, () => "Free Shipping on Orders over $50");
+---
+
+<header class="site-header" data-animate="header">
+  <div class="shipping-banner" aria-label="Shipping promotion">
+    <div class="shipping-track">
+      {marqueeItems.map((item) => <span class="shipping-item">{item}</span>)}
+      {marqueeItems.map((item) => <span class="shipping-item" aria-hidden="true">{item}</span>)}
+    </div>
+  </div>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="nav-links">
+        <a href="#" class="nav-link">Shop ⌄</a>
+        <a href="#" class="nav-link">Train</a>
+        <a href="#" class="nav-link">Blogs</a>
+      </div>
+
+      <a href="#" class="logo" aria-label="Pupford homepage">pupford</a>
+
+      <div class="nav-icons" aria-label="User actions">
+        <a href="#" class="icon-link" aria-label="Search">🔍</a>
+        <a href="#" class="icon-link" aria-label="Account">👤</a>
+        <a href="#" class="icon-link" aria-label="Cart">🛍️</a>
+      </div>
+    </div>
+  </nav>
+</header>
