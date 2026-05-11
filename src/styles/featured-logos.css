@@ -1,0 +1,49 @@
+.featured-logos {
+  background: #fff;
+  border-top: 1px solid rgba(26, 10, 0, 0.08);
+  border-bottom: 1px solid rgba(26, 10, 0, 0.08);
+  padding: clamp(1.1rem, 2.8vw, 1.7rem) 1rem;
+}
+
+.featured-logos-inner {
+  max-width: 1140px;
+  margin-inline: auto;
+}
+
+.featured-logos-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.featured-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-logo-item img {
+  width: auto;
+  max-width: min(170px, 42vw);
+  max-height: 44px;
+  object-fit: contain;
+  filter: saturate(0.1) contrast(1.05);
+  opacity: 0.95;
+}
+
+@media (min-width: 760px) {
+  .featured-logos-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .featured-logo-item img {
+    max-width: min(180px, 16vw);
+    max-height: 48px;
+  }
+}

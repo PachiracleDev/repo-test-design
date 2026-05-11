@@ -1,0 +1,57 @@
+---
+import "../styles/featured-logos.css";
+
+const logos = [
+  {
+    name: "dogster",
+    src: "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/dogster-logo_c8b0184f-cf75-46c3-877e-6542bbffcb27.png?v=1752549986&width=550",
+    width: 210,
+    height: 73,
+  },
+  {
+    name: "Reader's Digest",
+    src: "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/digest-logo_aec5bffb-2a70-44a5-985f-6d8153dbe006.png?v=1752550048&width=550",
+    width: 330,
+    height: 184,
+  },
+  {
+    name: "Rover",
+    src: "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/rover-logo_d779b1ed-79e1-463d-9e33-9530f6718c16.png?v=1752550081&width=550",
+    width: 260,
+    height: 95,
+  },
+  {
+    name: "PureWow",
+    src: "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/purewow-logo_80e4be54-b287-443c-b6d3-351f8bf2c51a.png?v=1752550100&width=550",
+    width: 320,
+    height: 126,
+  },
+  {
+    name: "People",
+    src: "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/people-logo_7919fbc4-a00d-4a13-b994-9a1ad55ffd92.png?v=1752550119&width=550",
+    width: 260,
+    height: 116,
+  },
+];
+---
+
+<section class="featured-logos" aria-label="Featured in">
+  <div class="featured-logos-inner">
+    <ul class="featured-logos-list" role="list">
+      {
+        logos.map((logo) => (
+          <li class="featured-logo-item">
+            <img
+              src={logo.src}
+              alt={logo.name}
+              width={logo.width}
+              height={logo.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

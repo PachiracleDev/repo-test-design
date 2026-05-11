@@ -1,64 +1,76 @@
 ---
 import "../styles/feature-section.css";
 
-const ASSETS = {
-  lifestyleTreats:
-    "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/training+treats+lifestyle.jpeg",
-  bagWithSize:
-    "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/pupford_product_imagestack_training_cheddarc_size.jpg"
-};
+const features = [
+  {
+    title: "Low Calorie",
+    description: "Reward good behavior without worrying about your pup's health.",
+    icon: "leaf",
+  },
+  {
+    title: "Very Tasty",
+    description: "Real ingredients mean real flavor and REALLY strong motivation.",
+    icon: "heart",
+  },
+  {
+    title: "Bite Sized",
+    description: "Each treat is small, easy to give and doesn't need to be broken apart.",
+    icon: "dot",
+  },
+  {
+    title: "No Mess",
+    description: "No crumbs, no residue, no weird stuff under your fingernails.",
+    icon: "sparkle",
+  },
+];
 ---
 
-<section class="feature-section" aria-labelledby="feature-title">
-  <div class="feature-inner">
-    <div class="feature-media">
-      <img
-        class="feature-lifestyle"
-        src={ASSETS.lifestyleTreats}
-        alt="Dog enjoying Pupford training treats"
-        width="2500"
-        height="1667"
-        loading="lazy"
-        decoding="async"
-      />
-      <article class="feature-card">
-        <img
-          src={ASSETS.bagWithSize}
-          alt="Pupford training treats product bag"
-          width="880"
-          height="880"
-          loading="lazy"
-          decoding="async"
-        />
-        <div>
-          <p class="feature-card-label">Best Seller</p>
-          <h3>Freeze Dried Training Treats</h3>
-          <p>From $15.99</p>
-        </div>
-      </article>
-    </div>
-
-    <div class="feature-copy">
-      <p class="feature-kicker">Why Pupford Works</p>
-      <h2 id="feature-title">Built for frequent rewards without overfeeding your dog</h2>
-      <p>
-        Ultra-light, protein-first treats designed for high repetition during obedience training. Same motivation,
-        cleaner sessions, and more precise behavior shaping.
+<section class="features" aria-labelledby="features-title">
+  <div class="features-inner">
+    <header class="features-header">
+      <p class="features-eyebrow">Why Pupford</p>
+      <h2 class="features-title" id="features-title">
+        Transform Your Pup's <span class="features-title-accent">Behavior</span>
+      </h2>
+      <p class="features-lede">
+        Pupford offers the world's best training treats to give you the tools necessary to rid yourself of those
+        annoying and sometimes dangerous pup behaviors.
       </p>
-      <div class="feature-metrics">
-        <article>
-          <strong>Low Calorie</strong>
-          <span>Reward more often with confidence.</span>
-        </article>
-        <article>
-          <strong>High Value</strong>
-          <span>Strong motivation for focused sessions.</span>
-        </article>
-        <article>
-          <strong>Bite Sized</strong>
-          <span>No crumbling, fast repetition in training.</span>
-        </article>
-      </div>
-    </div>
+    </header>
+
+    <ul class="features-grid" role="list">
+      {
+        features.map((feature) => (
+          <li class="feature-card">
+            <div class="feature-card-icon" aria-hidden="true">
+              {feature.icon === "leaf" && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 39c4-22 18-30 30-30 0 16-10 28-30 30Z" />
+                  <path d="M9 39c8-9 17-15 26-18" />
+                </svg>
+              )}
+              {feature.icon === "heart" && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M24 41C12 33 6 26 6 18a9 9 0 0 1 9-9c3.6 0 6.7 1.8 9 4.5C26.3 10.8 29.4 9 33 9a9 9 0 0 1 9 9c0 8-6 15-18 23Z" />
+                </svg>
+              )}
+              {feature.icon === "dot" && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="24" cy="24" r="14" />
+                  <circle cx="24" cy="24" r="5" fill="currentColor" stroke="none" />
+                </svg>
+              )}
+              {feature.icon === "sparkle" && (
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M24 6v10M24 32v10M6 24h10M32 24h10M11 11l7 7M30 30l7 7M37 11l-7 7M18 30l-7 7" />
+                </svg>
+              )}
+            </div>
+            <h3 class="feature-card-title">{feature.title}</h3>
+            <p class="feature-card-desc">{feature.description}</p>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </section>

@@ -1,0 +1,13 @@
+@import "swiper/css";
+@import "swiper/css/pagination";
+
+/* Bullets acordes con la marca */
+.swiper-pagination-bullet {
+  background: var(--color-ink-soft);
+  opacity: 0.35;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-coral);
+  opacity: 1;
+}

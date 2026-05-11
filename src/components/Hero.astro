@@ -1,67 +1,176 @@
 ---
-import DiscountBadge from "./DiscountBadge.astro";
 import "../styles/hero.css";
 
-/** Hero product: usa CDN si aún no hay `public/pupford-bags.png`. */
-const PRODUCT_SRC =
-  "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/Pupford_photography_product_treat_freezedried-beef-chicken-salmon_whitney_1.jpg";
+const VIDEO_SRC = "/magnific_a-cinematic-product-shot-_2963327483.mp4";
+const OFFER_BADGE_SRC =
+  "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Group_43_5.png?v=1768979531&width=1440";
 
-const headlineLine1 = ["Start", "Fixing", "Bad", "Behavior", "in", "Minutes", "with"];
-const headlineAccent = ["Training", "Treats"];
+const headlineMain = ["Easier", "Training", "Starts", "with"];
+const headlineAccent = ["Better", "Training", "Treats"];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <p class="microproof" data-animate="microproof">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <span>4.6 Stars | 17k+ Reviews</span>
-      </p>
+  <div class="hero-stage">
+    <video
+      class="hero-video"
+      data-animate="video"
+      data-scroll-video
+      muted
+      playsinline
+      preload="auto"
+    >
+      <source src={VIDEO_SRC} type="video/mp4" />
+    </video>
 
-      <h1 class="headline" id="hero-title">
-        <span class="headline-line">
-          {headlineLine1.map((word) => (
-            <span class="headline-word" data-word>
-              {word}
-            </span>
-          ))}
-        </span>
-        <span class="headline-line headline-accent">
-          {headlineAccent.map((word) => (
-            <span class="headline-word" data-word>
-              {word}
-            </span>
-          ))}
-        </span>
-      </h1>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="microproof" data-animate="microproof" aria-label="4.6 Stars | 17k+ Reviews">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="microproof-score">4.6</span>
+          <span class="microproof-label">Stars</span>
+          <span class="microproof-sep" aria-hidden="true">|</span>
+          <span class="microproof-count">17k+</span>
+          <span class="microproof-label">Reviews</span>
+        </p>
 
-      <p class="subtext" data-animate="subtext">
-        Pupford Freeze-Dried Training Treats use ultra-light, high-value freeze-dried protein so you can reward often
-        without overfeeding.
-      </p>
+        <h1 class="headline" id="hero-title">
+          <span class="headline-line">
+            {headlineMain.map((word) => (
+              <span class="headline-word" data-word>
+                {word}
+              </span>
+            ))}
+          </span>
+          <span class="headline-line headline-accent">
+            {headlineAccent.map((word) => (
+              <span class="headline-word" data-word>
+                {word}
+              </span>
+            ))}
+          </span>
+        </h1>
 
-      <a class="cta" href="#" data-animate="cta">
-        <span>Improve Bad Behavior Fast</span>
-        <span class="cta-arrow" aria-hidden="true">→</span>
-      </a>
+        <p class="subtext" data-animate="subtext">
+          Pupford Freeze-Dried Training Treats use ultra-light, high-value freeze-dried protein so you can reward often
+          without overfeeding
+        </p>
 
-      <a class="guarantee" href="#" data-animate="guarantee">✓ Backed by the Pupford Promise</a>
+        <a class="cta" href="#" data-animate="cta">
+          <span>Improve Bad Behavior Fast</span>
+          <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a class="guarantee" href="#" data-animate="guarantee">Backed by the Pupford Promise</a>
+      </div>
     </div>
 
-    <div class="hero-visual">
+    <div class="discount-badge" aria-label="Limited time offer fifty percent off">
       <img
-        class="hero-product"
-        src={PRODUCT_SRC}
-        alt="Pupford freeze-dried training treats product bags"
-        width="1200"
-        height="1500"
+        class="discount-badge-img"
+        src={OFFER_BADGE_SRC}
+        alt="Limited Time Offer 50% Off"
+        width="250"
+        height="250"
         loading="eager"
         decoding="async"
-        fetchpriority="high"
-        data-animate="product"
       />
     </div>
   </div>
-
-  <DiscountBadge />
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function initHeroMotion() {
+    const hero = document.querySelector(".hero");
+    if (!(hero instanceof HTMLElement)) return;
+    if (hero.dataset.motionInitialized === "1") return;
+    hero.dataset.motionInitialized = "1";
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const words = hero.querySelectorAll(".headline-word");
+    const subtext = hero.querySelector(".subtext");
+    const cta = hero.querySelector(".cta");
+    const guarantee = hero.querySelector(".guarantee");
+    const badge = hero.querySelector(".discount-badge");
+
+    const intro = gsap.timeline({
+      defaults: { ease: "power3.out" },
+      scrollTrigger: {
+        trigger: hero,
+        start: "top 88%",
+        once: true,
+      },
+    });
+
+    intro
+      .from(words, {
+        y: 26,
+        opacity: 0,
+        duration: 0.52,
+        stagger: 0.045,
+      })
+      .from(
+        [subtext, cta, guarantee],
+        {
+          y: 18,
+          opacity: 0,
+          duration: 0.42,
+          stagger: 0.08,
+        },
+        "-=0.18"
+      );
+
+    if (badge instanceof HTMLElement) {
+      gsap.from(badge, {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+    }
+
+    if (cta instanceof HTMLElement) {
+      gsap.to(cta, {
+        scale: 1.02,
+        duration: 1.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      const magnetic = (event) => {
+        const rect = cta.getBoundingClientRect();
+        const relX = event.clientX - (rect.left + rect.width / 2);
+        const relY = event.clientY - (rect.top + rect.height / 2);
+        gsap.to(cta, {
+          x: relX * 0.16,
+          y: relY * 0.24,
+          duration: 0.2,
+          ease: "power2.out",
+        });
+      };
+
+      const resetMagnetic = () => {
+        gsap.to(cta, {
+          x: 0,
+          y: 0,
+          duration: 0.35,
+          ease: "elastic.out(1, 0.45)",
+        });
+      };
+
+      cta.addEventListener("mousemove", magnetic);
+      cta.addEventListener("mouseleave", resetMagnetic);
+    }
+  }
+
+  initHeroMotion();
+  document.addEventListener("astro:after-swap", initHeroMotion);
+</script>

@@ -3,6 +3,7 @@ import "../styles/header.css";
 
 const SHIP = "FREE SHIPPING ON ORDERS OVER $50";
 const trackItems = Array.from({ length: 8 }, () => SHIP);
+const LOGO_SRC = "https://pupford.com/cdn/shop/files/pupford-logo.png?v=1726521768&width=240";
 ---
 
 <header class="site-header" data-animate="header">
@@ -29,7 +30,17 @@ const trackItems = Array.from({ length: 8 }, () => SHIP);
         <a href="#" class="nav-link">Blogs</a>
       </div>
 
-      <a href="#" class="logo" aria-label="Pupford home">pupford</a>
+      <a href="#" class="logo" aria-label="Pupford home">
+        <img
+          class="logo-img"
+          src={LOGO_SRC}
+          alt="Pupford logo"
+          width="120"
+          height="40"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
 
       <div class="nav-icons" aria-label="User actions">
         <a href="#" class="icon-link" aria-label="Search">

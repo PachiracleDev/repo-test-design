@@ -1,0 +1,160 @@
+---
+import "../styles/reviews-section.css";
+
+const reviews = [
+  {
+    image:
+      "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Pupford_Illustration_Calm_MacnCheese_RGB_1.webp?v=1767474422&width=550",
+    headline: "Great",
+    text: "These are great! They have really helped in potty training our puppy!",
+    name: "Travis T",
+  },
+  {
+    image:
+      "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Pupford_Illustration_UI_PupApproved_RGB_1_1.webp?v=1767476533&width=550",
+    headline: "Great training treats",
+    text: "Excellent size and my new puppies love them! Helped us teach them to be comfortable in their crates especially.",
+    name: "Molly",
+  },
+  {
+    image:
+      "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Pupford_Illustration_Immunity_PB_J_RGB_1.webp?v=1767476745&width=550",
+    headline: "Our Maltese is absolutely obsessed",
+    text: "With these freeze-dried chicken training treats! The moment he hears the bag, he comes running. Perfect size for training, and I love that they're made with real ingredients.",
+    name: "N.",
+  },
+  {
+    image:
+      "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Pupford_Illustration_Cognition_Beef_RGB_1.webp?v=1767476745&width=550",
+    headline: "Best Training Treats Ever",
+    text: "My dog absolutely adores the taste. Seriously, their eyes light up the moment they see the bag! This high palatability is key for keeping them engaged and motivated, especially when working on more challenging commands or in distracting environments.",
+    name: "Not Just Jasper",
+  },
+];
+
+const starRow = [1, 2, 3, 4, 5];
+---
+
+<section class="reviews-section" aria-labelledby="reviews-title" data-reviews-section>
+  <div class="reviews-inner">
+    <header class="reviews-header">
+      <h2 class="reviews-title" id="reviews-title">Reviews</h2>
+      <p class="reviews-subtitle">See what other pup parents have to say!</p>
+    </header>
+
+    <div class="reviews-swiper-wrap">
+      <div class="swiper js-reviews-swiper">
+        <div class="swiper-wrapper">
+          {
+            reviews.map((r) => (
+              <div class="swiper-slide">
+                <article class="review-card" data-review-card>
+                  <div class="review-card-top">
+                    <div class="review-card-illustration">
+                      <img
+                        src={r.image}
+                        alt={`Illustration for ${r.name}'s review`}
+                        width="220"
+                        height="220"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div class="review-stars-wrap">
+                      <ul class="review-stars" aria-label="5 out of 5 stars">
+                        {starRow.map(() => (
+                          <li aria-hidden="true">★</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="review-card-body">
+                    <h3 class="review-card-headline">{r.headline}</h3>
+                    <p class="review-card-text">{r.text}</p>
+                  </div>
+                  <footer class="review-card-footer">
+                    <p class="review-card-author">{r.name}</p>
+                  </footer>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+        <div class="swiper-pagination reviews-swiper-pagination" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from "swiper";
+  import { Pagination } from "swiper/modules";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  function initReviewsSwiper() {
+    const el = document.querySelector(".js-reviews-swiper");
+    if (!el || !(el instanceof HTMLElement)) return;
+    if (el.dataset.swiperInitialized === "1") return;
+    el.dataset.swiperInitialized = "1";
+
+    const paginationEl = el.querySelector(".reviews-swiper-pagination");
+    if (!(paginationEl instanceof HTMLElement)) return;
+
+    new Swiper(el, {
+      modules: [Pagination],
+      grabCursor: true,
+      speed: 450,
+      spaceBetween: 18,
+      slidesPerView: 1,
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+      },
+      breakpoints: {
+        520: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        1024: {
+          slidesPerView: 4,
+          pagination: { enabled: false },
+        },
+      },
+    });
+  }
+
+  function initReviewsMotion() {
+    const root = document.querySelector("[data-reviews-section]");
+    if (!(root instanceof HTMLElement)) return;
+    const section = root;
+    if (section.dataset.motionInitialized === "1") return;
+    section.dataset.motionInitialized = "1";
+
+    const cards = section.querySelectorAll("[data-review-card]");
+    if (!cards.length) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(cards, {
+      y: 40,
+      opacity: 0,
+      duration: 0.65,
+      ease: "power2.out",
+      stagger: 0.11,
+      scrollTrigger: {
+        trigger: section,
+        start: "top 82%",
+        once: true,
+      },
+    });
+  }
+
+  initReviewsSwiper();
+  initReviewsMotion();
+  document.addEventListener("astro:after-swap", () => {
+    initReviewsSwiper();
+    initReviewsMotion();
+  });
+</script>

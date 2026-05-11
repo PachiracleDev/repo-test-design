@@ -1,0 +1,123 @@
+---
+import "../styles/products-section.css";
+
+const MASCOT_SRC =
+  "https://cdn.shopify.com/s/files/1/0576/8622/9067/files/Your_paragraph_text_24.png?v=1757182244&width=640";
+
+const products = [
+  {
+    title: "Freeze Dried Dog Training Treats",
+    price: "From $15.99",
+    href: "#",
+    image:
+      "https://pupford.com/cdn/shop/files/Pupford_photography_product_treat_freezedried-beef-chicken-salmon_whitney_1_-_2500_x_1852.webp?v=1758644492&width=720",
+  },
+  {
+    title: "Soft & Chewy Training Treats",
+    price: "From $9.99",
+    href: "#",
+    image:
+      "https://pupford.com/cdn/shop/files/Pupford_photography_product_treat_freezedried-beef-chicken-pork_whitney_3_-_2500_x_1852.webp?v=1758644605&width=720",
+  },
+  {
+    title: "Bully Sticks & Rings",
+    price: "From $17.99",
+    href: "#",
+    image:
+      "https://pupford.com/cdn/shop/files/Pupford_photography_product_engage_12inchbullystick-bullystick-bullyring_whitney_1-2500x1852.webp?v=1758645150&width=720",
+  },
+  {
+    title: "Tendons",
+    price: "From $13.99",
+    href: "#",
+    image:
+      "https://pupford.com/cdn/shop/files/Pupford_photography_product_engage_turkeytendon-beeftendon-durbotendon_whitney_2-2500x1852.jpg?v=1757635978&width=720",
+  },
+];
+---
+
+<section class="products-section" aria-labelledby="products-favorites-title">
+  <div class="products-inner">
+    <div class="products-hero">
+      <div class="products-mascot-wrap" aria-hidden="true">
+        <img
+          class="products-mascot-img"
+          src={MASCOT_SRC}
+          alt=""
+          width="320"
+          height="120"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+      <h2 class="products-title" id="products-favorites-title">Our Favorite Products</h2>
+    </div>
+
+    <p class="products-subheading">Bestsellers</p>
+
+    <div class="products-swiper-wrap">
+      <div class="swiper js-products-swiper">
+        <div class="swiper-wrapper">
+          {
+            products.map((p) => (
+              <div class="swiper-slide">
+                <article class="product-card">
+                  <div class="product-card-media">
+                    <img src={p.image} alt={p.title} width="360" height="267" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="product-card-body">
+                    <h3 class="product-card-title">{p.title}</h3>
+                    <p class="product-card-price">{p.price}</p>
+                    <a class="product-card-cta" href={p.href}>
+                      View Details
+                    </a>
+                  </div>
+                </article>
+              </div>
+            ))
+          }
+        </div>
+        <div class="swiper-pagination products-swiper-pagination" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from "swiper";
+  import { Pagination } from "swiper/modules";
+
+  function initProductsSwiper() {
+    const el = document.querySelector(".js-products-swiper");
+    if (!el || !(el instanceof HTMLElement)) return;
+    if (el.dataset.swiperInitialized === "1") return;
+    el.dataset.swiperInitialized = "1";
+
+    const paginationEl = el.querySelector(".products-swiper-pagination");
+    if (!(paginationEl instanceof HTMLElement)) return;
+
+    new Swiper(el, {
+      modules: [Pagination],
+      grabCursor: true,
+      speed: 450,
+      spaceBetween: 18,
+      slidesPerView: 1,
+      pagination: {
+        el: paginationEl,
+        clickable: true,
+      },
+      breakpoints: {
+        520: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        1024: {
+          slidesPerView: 4,
+          pagination: { enabled: false },
+        },
+      },
+    });
+  }
+
+  initProductsSwiper();
+  document.addEventListener("astro:after-swap", initProductsSwiper);
+</script>

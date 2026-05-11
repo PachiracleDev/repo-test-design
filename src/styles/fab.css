@@ -1,0 +1,38 @@
+.fab-account {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--color-coral);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--dur-fast) var(--ease-out-quart),
+    filter var(--dur-fast) ease;
+}
+
+.fab-account:hover {
+  filter: brightness(0.95);
+  transform: scale(1.04);
+}
+
+.fab-account:focus-visible {
+  outline: 2px solid var(--color-coral);
+  outline-offset: 3px;
+}
+
+.fab-account svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
