@@ -1,20 +1,20 @@
 :root {
   /* === BRAND COLORS === */
-  --color-coral: #E94F3D;
-  --color-coral-dark: #C73E2E;
-  --color-coral-light: #F47A6B;
+  --color-coral: #c8432f;
+  --color-coral-dark: #a63626;
+  --color-coral-light: #d85a47;
   --color-pink: #F4C2B8;
   --color-pink-soft: #FAE4DE;
   --color-cream: #F5EFE4;
   --color-cream-dark: #EBE3D2;
-  --color-ink: #2B1810;
+  --color-ink: #1a0a00;
   --color-ink-soft: #5A4438;
   --color-white: #FFFFFF;
   --color-star: #F5A623;
 
   /* === TYPOGRAPHY === */
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-display: "Fraunces", "DM Serif Display", Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
 
   --fs-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
   --fs-sm: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);

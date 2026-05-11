@@ -1,38 +1,35 @@
 ---
 import "../styles/header.css";
 
-const marqueeItems = Array.from({ length: 8 }, () => "Free Shipping on Orders over $50");
-
-const LOGO_SRC = "https://pupford.com/cdn/shop/files/pupford-logo.png?v=1726521768&width=150";
+const SHIP = "FREE SHIPPING ON ORDERS OVER $50";
+const trackItems = Array.from({ length: 8 }, () => SHIP);
 ---
 
 <header class="site-header" data-animate="header">
   <div class="shipping-banner" aria-label="Shipping promotion">
-    <div class="shipping-track">
-      {marqueeItems.map((item) => <span class="shipping-item">{item}</span>)}
-      {marqueeItems.map((item) => <span class="shipping-item" aria-hidden="true">{item}</span>)}
+    <div class="shipping-marquee">
+      <div class="shipping-track">
+        {trackItems.map((t) => (
+          <span class="shipping-item">{t}</span>
+        ))}
+      </div>
+      <div class="shipping-track" aria-hidden="true">
+        {trackItems.map((t) => (
+          <span class="shipping-item">{t}</span>
+        ))}
+      </div>
     </div>
   </div>
 
   <nav class="main-nav" aria-label="Main navigation">
     <div class="nav-inner">
       <div class="nav-links">
-        <a href="#" class="nav-link">Shop ⌄</a>
+        <a href="#" class="nav-link">Shop <span class="caret" aria-hidden="true">▾</span></a>
         <a href="#" class="nav-link">Train</a>
         <a href="#" class="nav-link">Blogs</a>
       </div>
 
-      <a href="#" class="logo" aria-label="Pupford homepage">
-        <img
-          class="logo-img"
-          src={LOGO_SRC}
-          alt="Pupford logo"
-          width="150"
-          height="40"
-          loading="eager"
-          decoding="async"
-        />
-      </a>
+      <a href="#" class="logo" aria-label="Pupford home">pupford</a>
 
       <div class="nav-icons" aria-label="User actions">
         <a href="#" class="icon-link" aria-label="Search">
@@ -54,12 +51,7 @@ const LOGO_SRC = "https://pupford.com/cdn/shop/files/pupford-logo.png?v=17265217
         </a>
         <a href="#" class="icon-link" aria-label="Cart">
           <svg class="nav-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M9 8V6a3 3 0 016 0v2"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
+            <path d="M9 8V6a3 3 0 016 0v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
             <path
               d="M5 9h14l-1.2 10.1a2 2 0 01-2 1.9H8.2a2 2 0 01-2-1.9L5 9z"
               stroke="currentColor"

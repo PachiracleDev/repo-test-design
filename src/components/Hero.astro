@@ -1,15 +1,13 @@
 ---
-import BenefitCallout from "./BenefitCallout.astro";
 import DiscountBadge from "./DiscountBadge.astro";
 import "../styles/hero.css";
 
-const ASSETS = {
-  productTrio:
-    "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/Pupford_photography_product_treat_freezedried-beef-chicken-salmon_whitney_1.jpg"
-};
+/** Hero product: usa CDN si aún no hay `public/pupford-bags.png`. */
+const PRODUCT_SRC =
+  "https://folio-fotos-proyectos.s3.us-east-2.amazonaws.com/folio/drive-download-20260511T175139Z-3-001/Pupford_photography_product_treat_freezedried-beef-chicken-salmon_whitney_1.jpg";
 
-const headlineWords = ["Easier", "Training", "Starts", "with"];
-const accentWords = ["Better", "Training", "Treats"];
+const headlineLine1 = ["Start", "Fixing", "Bad", "Behavior", "in", "Minutes", "with"];
+const headlineAccent = ["Training", "Treats"];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -17,17 +15,23 @@ const accentWords = ["Better", "Training", "Treats"];
     <div class="hero-copy">
       <p class="microproof" data-animate="microproof">
         <span class="stars" aria-hidden="true">★★★★★</span>
-        <span>4.6 Stars</span>
-        <span class="divider" aria-hidden="true">|</span>
-        <span>17k+ Reviews</span>
+        <span>4.6 Stars | 17k+ Reviews</span>
       </p>
 
-      <h1 class="headline" id="hero-title" aria-label="Easier Training Starts with Better Training Treats">
+      <h1 class="headline" id="hero-title">
         <span class="headline-line">
-          {headlineWords.map((word) => <span class="headline-word" data-word>{word}</span>)}
+          {headlineLine1.map((word) => (
+            <span class="headline-word" data-word>
+              {word}
+            </span>
+          ))}
         </span>
         <span class="headline-line headline-accent">
-          {accentWords.map((word) => <span class="headline-word" data-word>{word}</span>)}
+          {headlineAccent.map((word) => (
+            <span class="headline-word" data-word>
+              {word}
+            </span>
+          ))}
         </span>
       </h1>
 
@@ -45,26 +49,19 @@ const accentWords = ["Better", "Training", "Treats"];
     </div>
 
     <div class="hero-visual">
-      <div class="hero-media">
-        <img
-          class="hero-product"
-          src={ASSETS.productTrio}
-          alt="Pupford freeze-dried training treats bags in beef, chicken, and salmon flavors"
-          width="2400"
-          height="1800"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-          data-animate="product"
-        />
-        <DiscountBadge />
-      </div>
-
-      <div class="hero-callouts">
-        <BenefitCallout label="High Value" position="top-left" />
-        <BenefitCallout label="Low Calorie" position="middle-right" />
-        <BenefitCallout label="Size" position="bottom-left" />
-      </div>
+      <img
+        class="hero-product"
+        src={PRODUCT_SRC}
+        alt="Pupford freeze-dried training treats product bags"
+        width="1200"
+        height="1500"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        data-animate="product"
+      />
     </div>
   </div>
+
+  <DiscountBadge />
 </section>
